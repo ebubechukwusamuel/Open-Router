@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Design Agent</title>
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="app">
+  <header>
+    <h1>Design Agent</h1>
+    <p>Generate social media graphics in your style</p>
+  </header>
+
+  <main>
+    <div class="panel controls">
+      <div class="section">
+        <label for="mode">Mode</label>
+        <select id="mode">
+          <option value="fill">Template Fill</option>
+          <option value="txt">Text to Design</option>
+        </select>
+      </div>
+
+      <div class="section">
+        <label for="template">Template</label>
+        <select id="template">
+          <option value="quote_card">Quote Card</option>
+          <option value="instagram_square">Instagram Square</option>
+          <option value="instagram_story">Instagram Story</option>
+          <option value="twitter_post">Twitter Post</option>
+          <option value="youtube_thumbnail">YouTube Thumbnail</option>
+          <option value="pinterest">Pinterest Pin</option>
+        </select>
+      </div>
+
+      <div class="section">
+        <label for="palette">Color Palette</label>
+        <select id="palette"></select>
+        <div id="palette-preview" class="palette-preview"></div>
+      </div>
+
+      <div class="section">
+        <label for="platform">Platform</label>
+        <select id="platform">
+          <option value="instagram_square">Instagram Square (1080x1080)</option>
+          <option value="instagram_story">Instagram Story (1080x1920)</option>
+          <option value="twitter_post">Twitter Post (1200x675)</option>
+          <option value="youtube_thumbnail">YouTube Thumbnail (1280x720)</option>
+          <option value="pinterest">Pinterest Pin (1000x1500)</option>
+        </select>
+      </div>
+
+      <div class="section">
+        <label for="title">Title</label>
+        <input type="text" id="title" placeholder="Main headline..." value="Design is intelligence made visible">
+      </div>
+
+      <div class="section">
+        <label for="subtitle">Subtitle / Author</label>
+        <input type="text" id="subtitle" placeholder="Subtitle or author..." value="Your style. Automated.">
+      </div>
+
+      <button id="generate-btn" onclick="generate()">Generate Design</button>
+      <div id="loading" class="loading hidden">Generating...</div>
+    </div>
+
+    <div class="panel result">
+      <div class="preview-container">
+        <img id="preview" class="preview" alt="Your design will appear here">
+        <div id="placeholder" class="placeholder">Your design will appear here</div>
+      </div>
+      <a id="download-btn" class="download-btn hidden" download="design.png">Download PNG</a>
+    </div>
+  </main>
+</div>
+<script src="/app.js"></script>
+</body>
+</html>

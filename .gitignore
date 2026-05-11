@@ -1,0 +1,14 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.env
+.vercel
+node_modules/
+output/
+examples/user_designs/
+tmp/
+design-agent/
+vercel-deploy/
+download_*.py
+
+.vercel
