@@ -6,4 +6,5 @@ from .social import (
     YouTubeThumbnailTemplate,
     QuoteCardTemplate,
     PinterestTemplate,
+    FacebookPostTemplate,
 )

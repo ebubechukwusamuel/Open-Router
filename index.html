@@ -4,34 +4,32 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Design Agent</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/style.css">
 </head>
 <body>
+<div class="noise-overlay"></div>
 <div class="app">
   <header>
+    <div class="header-badge">BETA</div>
     <h1>Design Agent</h1>
-    <p>Generate social media graphics in your style</p>
+    <p>Generate Pinterest-quality social graphics in seconds</p>
   </header>
 
   <main>
     <div class="panel controls">
       <div class="section">
-        <label for="mode">Mode</label>
-        <select id="mode">
-          <option value="fill">Template Fill</option>
-          <option value="txt">Text to Design</option>
-        </select>
-      </div>
-
-      <div class="section">
         <label for="template">Template</label>
         <select id="template">
-          <option value="quote_card">Quote Card</option>
           <option value="instagram_square">Instagram Square</option>
           <option value="instagram_story">Instagram Story</option>
           <option value="twitter_post">Twitter Post</option>
           <option value="youtube_thumbnail">YouTube Thumbnail</option>
+          <option value="quote_card">Quote Card</option>
           <option value="pinterest">Pinterest Pin</option>
+          <option value="facebook_post">Facebook Post</option>
         </select>
       </div>
 
@@ -42,38 +40,71 @@
       </div>
 
       <div class="section">
-        <label for="platform">Platform</label>
-        <select id="platform">
-          <option value="instagram_square">Instagram Square (1080x1080)</option>
-          <option value="instagram_story">Instagram Story (1080x1920)</option>
-          <option value="twitter_post">Twitter Post (1200x675)</option>
-          <option value="youtube_thumbnail">YouTube Thumbnail (1280x720)</option>
-          <option value="pinterest">Pinterest Pin (1000x1500)</option>
-        </select>
-      </div>
-
-      <div class="section">
         <label for="title">Title</label>
         <input type="text" id="title" placeholder="Main headline..." value="Design is intelligence made visible">
       </div>
 
       <div class="section">
-        <label for="subtitle">Subtitle / Author</label>
-        <input type="text" id="subtitle" placeholder="Subtitle or author..." value="Your style. Automated.">
+        <label for="subtitle">Subtitle</label>
+        <input type="text" id="subtitle" placeholder="Subtitle text..." value="Your style. Automated.">
       </div>
 
-      <button id="generate-btn" onclick="generate()">Generate Design</button>
-      <div id="loading" class="loading hidden">Generating...</div>
+      <div class="section collapsible">
+        <div class="section-header" onclick="this.parentElement.classList.toggle('open')">
+          <span>Advanced Options</span>
+          <span class="chevron">▼</span>
+        </div>
+        <div class="section-body">
+          <div class="section">
+            <label for="body">Body Text</label>
+            <textarea id="body" rows="3" placeholder="Optional body text...">Create beautiful, on-brand designs in seconds. No design experience needed.</textarea>
+          </div>
+          <div class="section">
+            <label for="author">Author / Attribution</label>
+            <input type="text" id="author" placeholder="Author name...">
+          </div>
+          <div class="section">
+            <label for="cta">Call to Action</label>
+            <input type="text" id="cta" placeholder="e.g. ▶ WATCH, LEARN MORE" value="▶ WATCH">
+          </div>
+        </div>
+      </div>
+
+      <button id="generate-btn" onclick="generate()">
+        <span class="btn-icon">✦</span>
+        Generate Design
+      </button>
+      <div id="loading" class="loading hidden">
+        <div class="spinner"></div>
+        Generating your design...
+      </div>
     </div>
 
     <div class="panel result">
       <div class="preview-container">
-        <img id="preview" class="preview" alt="Your design will appear here">
-        <div id="placeholder" class="placeholder">Your design will appear here</div>
+        <img id="preview" class="preview hidden" alt="Your design will appear here">
+        <div id="placeholder" class="placeholder">
+          <div class="placeholder-icon">✦</div>
+          <span>Your design will appear here</span>
+          <span class="placeholder-hint">Adjust settings and click Generate</span>
+        </div>
       </div>
-      <a id="download-btn" class="download-btn hidden" download="design.png">Download PNG</a>
+      <div class="result-actions hidden" id="result-actions">
+        <a id="download-btn" class="btn-secondary" download="design.png">
+          <span>⬇</span> Download PNG
+        </a>
+        <button class="btn-secondary" onclick="generate()">
+          <span>↻</span> Regenerate
+        </button>
+      </div>
     </div>
   </main>
+
+  <footer>
+    <span>Design Agent</span>
+    <span class="footer-sep">·</span>
+    <span>Powered by AI</span>
+  </footer>
 </div>
 <script src="/app.js"></script>
 </body>

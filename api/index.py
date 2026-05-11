@@ -31,8 +31,11 @@ def handle_generate():
     palette_name = params.get("palette", "minimal")
     title = params.get("title", "Your Design")
     subtitle = params.get("subtitle", "")
+    body = params.get("body", "")
     quote = params.get("quote", title)
     author = params.get("author", subtitle)
+    description = params.get("description", "")
+    cta = params.get("cta", "▶ WATCH")
 
     palette = ColorPalette.from_hex_list(
         _PALETTES.get(palette_name, _PALETTES["minimal"]), name=palette_name
@@ -60,9 +63,11 @@ def handle_generate():
         content = {
             "title": title,
             "subtitle": subtitle,
-            "body": params.get("body", ""),
+            "body": body,
             "quote": quote,
             "author": author,
+            "description": description,
+            "cta": cta,
         }
         tpl = get_template(template)()
         tpl.setup(style, content)
