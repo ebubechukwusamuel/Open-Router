@@ -1,10 +1,11 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, send_from_directory
 import json
 import io
 import base64
 import sys
 import os
 
+ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "design_agent"))
 
 from core.styles import DesignStyle, TextStyle
@@ -82,3 +83,11 @@ def handle_generate():
 @app.route("/api/templates")
 def handle_templates():
     return jsonify({"templates": list_templates()})
+
+@app.route("/")
+def serve_index():
+    return send_from_directory(ROOT, "index.html")
+
+@app.route("/<path:filename>")
+def serve_static(filename):
+    return send_from_directory(ROOT, filename)
